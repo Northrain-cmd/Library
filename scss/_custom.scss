@@ -1,0 +1,31 @@
+html{
+    min-height: 100vh;
+}
+body{
+    background:linear-gradient(to right, rgb(0, 242, 96), rgb(5, 117, 230)) no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+.grid-x{
+    width: 100%;
+    margin:0;
+}
+.name{
+    font-family:"Lora" ;
+}
+i{
+    font-size: 1.5em;
+}
+#isReadButton{
+    margin: 0;
+    width:18px;
+    height:18px;
+}
+.readField{
+    position: relative;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-direction: row;
+}
