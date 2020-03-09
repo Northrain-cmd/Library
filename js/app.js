@@ -17,19 +17,18 @@ function addBookToLibrary(title,author,pages,year,isRead){
 addBookToLibrary("Lord of The Rings","J.R.Tolkien",423,1954,true);
 addBookToLibrary("The Catcher in the Rye","J.D.Salinger",234,1951,false);
 function formSubmit(){
-    console.log("Form Submitted")
+    console.log("Form Submitted");
     addBookToLibrary(form.title.value,form.author.value,form.pages.value,form.year.value,form.isRead.checked);
     update();
-    console.log(myLibrary);
 }
 const form=document.querySelector("form");
 form.addEventListener('submit',formSubmit);
 const cardContainer=document.querySelector(".card-container");
-function addCard(book,index){
+function addCard(book){
     cardContainer.innerHTML+=`<div class="cell small-12 medium-4 large-3 card" data-closable>
         <div class="card-divider" style="position: relative;">
         ${book.author}
-        <button class="close-button" aria-label="Close alert" type="button" data-close data-card="${index}">
+        <button class="close-button" aria-label="Close alert" type="button" data-close>
         <span aria-hidden="true">&times;</span>
       </button>
         </div>
@@ -39,24 +38,28 @@ function addCard(book,index){
         <p>${book.isRead?"Read":"Not Read Yet"}</p>
         </div>
     </div>`;
+    
 }
 function render(){
-    myLibrary.forEach((book,index)=>{
-        addCard(book,index);
+    myLibrary.forEach((book)=>{
+        addCard(book);
     })
 }
 
 function update(){
     let book=myLibrary[myLibrary.length-1];
-    addCard(book,(myLibrary.length-1));
+    addCard(book);
     }
 render();
-const removeButtons=document.querySelectorAll(".close-button");
+let removeButtons=document.querySelectorAll(".close-button");
 removeButtons.forEach(button=>{
-    button.addEventListener("click",()=>{
-        console.log(button.getAttribute("data-card"));
-        let index=button.getAttribute("data-card");
-        myLibrary.splice(index,1);
-        console.log(myLibrary)
-    });
+    button.addEventListener("click",(e)=>{
+        let removeTitle=e.target.parentElement.parentElement.nextElementSibling.firstElementChild.textContent;
+        console.log(myLibrary);
+        myLibrary.forEach((book,index,self)=>{
+            if(book.title!==removeTitle) return book
+            else self.splice(index,1)
+
+         });
+    })
 })
