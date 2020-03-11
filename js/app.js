@@ -42,12 +42,28 @@ function addCard(book){
 function render(){
     myLibrary.forEach((book)=>{
         addCard(book);
+        addRemoveBtnListeners();
     })
 }
 
 function update(){
     let book=myLibrary[myLibrary.length-1];
     addCard(book);
+    addRemoveBtnListeners();
+    }
+
+function addRemoveBtnListeners(){
+    let removeButtons=document.querySelectorAll(".close-button");
+    removeButtons.forEach(button=>{
+            button.addEventListener("click",(e)=>{
+                let removeTitle=e.target.parentElement.parentElement.nextElementSibling.firstElementChild.textContent;
+                myLibrary.forEach((book,index,self)=>{
+                    if(book.title!==removeTitle) return book
+                    else self.splice(index,1)
+    
+                });
+            })
+        })
     }
 
 
@@ -60,23 +76,8 @@ const form=document.querySelector("form");
 
 form.addEventListener('submit',(e)=>{
     e.preventDefault();
-    formSubmit();
-    
+    formSubmit(); 
 })
 
 render();
 
-let removeButtons=document.querySelectorAll(".close-button");
-
-removeButtons.forEach(button=>{
-    button.addEventListener("click",(e)=>{
-        console.log(myLibrary);
-        let removeTitle=e.target.parentElement.parentElement.nextElementSibling.firstElementChild.textContent;
-        console.log(myLibrary);
-        myLibrary.forEach((book,index,self)=>{
-            if(book.title!==removeTitle) return book
-            else self.splice(index,1)
-
-         });
-    })
-})
