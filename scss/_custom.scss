@@ -29,3 +29,33 @@ i{
     justify-content: left;
     flex-direction: row;
 }
+.close-button{
+    font-size: 2.4em;
+}
+.fa-gear{
+    position: absolute; 
+    right:25%; 
+    font-size: 1.2em; 
+    color:$dark-gray;
+    transition: color .1s;
+}
+.fa-gear:hover{
+    color: black;
+}
+.done{
+    position:absolute;
+    right:0;
+    height:100%;
+}
+.edit-input{
+    height:50%;
+}
+.move{
+    padding-left:0 !important;
+}
+.form-grid{
+    padding-top: 0.5rem;
+}
+.disabled{
+    pointer-events:none;
+}
